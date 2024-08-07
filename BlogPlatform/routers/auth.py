@@ -4,18 +4,14 @@ import jwt
 from os import getenv
 from dotenv import load_dotenv
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
+from BlogPlatform.jwt import token_required
 from BlogPlatform.models import User
 
-main = Blueprint('main', __name__)
+auth_router = Blueprint('auth_router', __name__)
 load_dotenv()
 
 
-@main.route("/")
-def index():
-    return render_template("index.html")
-
-
-@main.route("/register", methods=['GET', 'POST'])
+@auth_router.route("/register", methods=['GET', 'POST'])
 def register():
     if request.method == "POST":
         username = request.form['username']
@@ -23,16 +19,16 @@ def register():
 
         if User.find_by_username(username):
             flash("User already exists", "error")
-            redirect(url_for("main.register"))
+            redirect(url_for("auth_router.register"))
         else:
             User.create_user(username, password)
             flash("Successfully registered", "success")
-            return redirect(url_for("main.login"))
+            return redirect(url_for("auth_router.login"))
 
     return render_template("register.html")
 
 
-@main.route("/login", methods=['GET', 'POST'])
+@auth_router.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
         username = request.form['username']
@@ -49,17 +45,21 @@ def login():
             session['username'] = username
 
             flash("Login successful", "success")
-            return redirect(url_for("main.index"))
+            return redirect(url_for("main_router.index"))
         else:
             flash("Incorrect username/password", "error")
-            return redirect(url_for("main.login"))
+            return redirect(url_for("auth_router.login"))
 
     return render_template("login.html")
 
 
-@main.route("/logout")
+@auth_router.route("/logout")
 def logout():
-    session.pop('token', None)
-    session.pop('username', None)
-    flash("You logged out", "success")
-    return redirect(url_for("main.index"))
+    if session.get('token'):
+        session.pop('token', None)
+        session.pop('username', None)
+        flash("You logged out", "success")
+        return redirect(url_for("main_router.index"))
+    else:
+        flash("You are not logged", "error")
+        return redirect(url_for('auth_router.login'))

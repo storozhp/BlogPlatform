@@ -2,4 +2,11 @@
 
 {% block content %}
     <h2>Posts</h2>
+    {% for post in posts %}
+    <div class="post">
+        <h3 class="post-title">{{ post.post_title }}</h3>
+        <p class="post-author">Author: {{ post.post_author }}</p>
+        <a href="{{ url_for('posts_router.post', post_id=post._id) }}" class="button">Read More</a>
+    </div>
+    {% endfor %}
 {% endblock %}

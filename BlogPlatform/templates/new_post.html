@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>New post</h2>
+    <form method="post" action="{{ url_for('posts_router.new_post') }}">
+        <input type="text" id="post_title" name="post_title" placeholder="Title" required>
+        <textarea name="post_content" id="post_content" placeholder="Content" required></textarea>
+        <button type="submit">Publish</button>
+    </form>
+{% endblock %}

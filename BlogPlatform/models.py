@@ -1,5 +1,6 @@
-from BlogPlatform.database import users_collection
+from BlogPlatform.database import users_collection, posts_collection
 from werkzeug.security import generate_password_hash, check_password_hash
+from bson import ObjectId
 
 
 class User:
@@ -24,4 +25,20 @@ class User:
 
 
 class Post:
-    pass
+    @staticmethod
+    def create_post(author_username: str, post_title:str, post_content:str):
+        posts_collection.insert_one({
+            "post_author": author_username,
+            "post_title": post_title,
+            "post_content": post_content
+        })
+
+    @staticmethod
+    def get_post_by_id(post_id):
+        return posts_collection.find_one({
+            "_id": ObjectId(post_id)
+        })
+
+    @staticmethod
+    def get_all_posts():
+        return list(posts_collection.find())
