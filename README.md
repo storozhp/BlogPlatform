@@ -2,22 +2,6 @@
 
 This is a blog platform built using Flask, Python, and MongoDB. The platform allows users to register, login, create posts, and view posts. JWT is used for authentication without relying on the Flask-JWT library. The project includes features like flashing messages and a dynamic navbar that changes based on user login status.
 
-## Features
-
-### Implemented
-
-- [x] User registration
-- [x] User login with JWT authentication
-- [x] User logout
-- [x] Dynamic navbar that updates based on login status
-
-### Planned
-
-- [ ] Editing and deleting blog posts
-- [ ] User profile pages
-- [ ] Deployment to a production server
-- [ ] Creating and viewing blog posts
-- [ ] Protected routes accessible only to authenticated users
 
 ## Getting Started
 
