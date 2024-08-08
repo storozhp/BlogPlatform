@@ -12,7 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 You need to have the following software installed on your machine:
 
 - Python 3.12
-- MongoDB
+- MongoDB Community Edition 7.0
 - pip (Python package installer)
 
 ### Installing
