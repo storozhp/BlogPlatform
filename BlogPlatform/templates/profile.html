@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="profile">
+    <h2>{{ user.username }}'s Profile</h2>
+    <div class="profile-info">
+        <p><strong>Username:</strong> {{ user.username }}</p>
+    </div>
+
+    <h3>Posts</h3>
+    {% if user_posts %}
+        {% for post in user_posts %}
+        <div class="post">
+            <h3 class="post-title">{{ post.post_title }}</h3>
+            <p class="post-author">by {{ post.post_author }}</p>
+            <p class="post-content">{{ post.post_content }}</p>
+            <a href="{{ url_for('posts_router.post', post_id=post._id) }}" class="button">Read More</a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Posts not founded</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -19,6 +19,7 @@
                 <a href="{{ url_for('auth_router.login') }}">Login</a>
             {% else %}
                 <a href="{{ url_for('posts_router.new_post') }}">New post</a>
+                <a href="{{ url_for('main_router.profile', username=session.get('username')) }}">My account</a>
                 <a href="{{ url_for('auth_router.logout') }}">Logout</a>
             {% endif %}
         </nav>

@@ -177,3 +177,41 @@ ul li a:hover {
 .post a.button:hover {
   background-color: #45a049;
 }
+
+/* Стилі для профілю користувача */
+.profile {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.profile-info p {
+  margin: 0.5rem 0;
+}
+
+.user-posts {
+  list-style: none;
+  padding: 0;
+}
+
+.user-posts .post {
+  margin: 1rem 0;
+}
+
+.user-posts .post a {
+  font-size: 1.2rem;
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.user-posts .post a:hover {
+  text-decoration: underline;
+}
+
+.post-date {
+  font-size: 0.9rem;
+  color: #777;
+}
+

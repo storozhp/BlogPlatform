@@ -42,3 +42,7 @@ class Post:
     @staticmethod
     def get_all_posts():
         return list(posts_collection.find())
+    
+    @staticmethod
+    def get_user_posts(username):
+        return list(posts_collection.find({"post_author": username}))
