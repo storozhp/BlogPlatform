@@ -46,3 +46,7 @@ class Post:
     @staticmethod
     def get_user_posts(username):
         return list(posts_collection.find({"post_author": username}))
+    
+    @staticmethod
+    def delete_post(post_id):
+        posts_collection.find_one_and_delete({"_id": ObjectId(post_id)})

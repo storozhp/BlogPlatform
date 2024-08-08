@@ -5,5 +5,9 @@
         <h2 class="post-title">{{ post.post_title }}</h2>
         <p class="post-author">Author: {{ post.post_author }}</p>
         <p class="post-content">{{ post.post_content }}</p>
+        
+        {% if session.get('username') == post.post_author %}
+        <a class="dropdown-item delete-btn" href="{{ url_for('posts_router.delete_post', post_id=post._id) }}" onclick="return confirm('Are you want delete this post?');">Delete post</a>
+        {% endif %}
     </div>
 {% endblock %}

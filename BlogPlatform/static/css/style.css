@@ -210,8 +210,11 @@ ul li a:hover {
   text-decoration: underline;
 }
 
-.post-date {
-  font-size: 0.9rem;
-  color: #777;
+/* Specific styles for the delete button */
+.delete-btn {
+  color: #e74c3c;
 }
 
+.delete-btn:hover {
+  background-color: #f7d4d4;
+}

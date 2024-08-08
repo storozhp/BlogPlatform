@@ -24,3 +24,16 @@ def new_post(current_user):
 def post(post_id):
     post = Post.get_post_by_id(post_id)
     return render_template('post.html', post=post)
+
+
+@posts_router.route("/delete_post/<post_id>")
+@token_required
+def delete_post(current_user, post_id):
+    post = Post.get_post_by_id(post_id)
+
+    if current_user['username'] != post['post_author']:
+        flash("You are not post author", "error")
+    else:
+        Post.delete_post(post_id)
+    
+    return redirect(url_for('main_router.index'))
